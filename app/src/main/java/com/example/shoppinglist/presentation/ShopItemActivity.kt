@@ -30,38 +30,12 @@ class ShopItemActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shop_item)
         parseIntent()
-//        viewModel = ViewModelProvider(this)[ShopItemViewModel::class.java]
-//        initViews()
-//        addTextChangeListeners()
-        launchRightMode()
-//        observeViewModel()
+        if (savedInstanceState == null) {
+            launchRightMode()
+        }
+
     }
 
-    //    private fun observeViewModel() {
-//        viewModel.errorInputCount.observe(this) {
-//            val message = if (it) {
-//                getString(R.string.error_input_count)
-//            } else {
-//                null
-//            }
-//            textInputCount.error = message
-//        }
-//
-//        viewModel.errorInputName.observe(this) {
-//            val message = if (it) {
-//                getString(R.string.error_input_name)
-//            } else {
-//                null
-//            }
-//            textInputName.error = message
-//        }
-//
-//        viewModel.closeScreen.observe(this) {
-//            finish()
-//        }
-//
-//    }
-//
     private fun launchRightMode() {
         val fragment = when (screenMode) {
             MODE_EDIT -> ShopItemFragment.newInstanceEditItem(shopItemId)
@@ -69,56 +43,10 @@ class ShopItemActivity : AppCompatActivity() {
             else -> throw RuntimeException("Unknown screen mode $screenMode")
         }
         supportFragmentManager.beginTransaction()
-            .add(R.id.shop_item_container, fragment)
+            .replace(R.id.shop_item_container, fragment)
             .commit()
     }
 
-    //
-//    private fun addTextChangeListeners() {
-//        editTextName.addTextChangedListener(object : TextWatcher {
-//            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//            }
-//
-//            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//                viewModel.resetErrorInputName()
-//            }
-//
-//            override fun afterTextChanged(p0: Editable?) {
-//            }
-//        })
-//
-//        editTextCount.addTextChangedListener(object : TextWatcher {
-//            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//            }
-//
-//            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//                viewModel.resetErrorInputCount()
-//            }
-//
-//            override fun afterTextChanged(p0: Editable?) {
-//            }
-//        })
-//    }
-//
-//    private fun launchEditMode() {
-//        viewModel.getShopItem(shopItemId)
-//        viewModel.shopItem.observe(this) {
-//            editTextName.setText(it.name)
-//            editTextCount.setText(it.count.toString())
-//        }
-//        buttonSave.setOnClickListener {
-//            viewModel.editShopItem(editTextName.text?.toString(), editTextCount.text?.toString())
-//        }
-////        val nameSI = shopItem.
-////        viewModel.editShopItem()
-//    }
-//
-//    private fun launchAddMode() {
-//        buttonSave.setOnClickListener {
-//            viewModel.addShopItem(editTextName.text?.toString(), editTextCount.text?.toString())
-//        }
-//    }
-//
     private fun parseIntent() {
         if (!intent.hasExtra(EXTRA_SCREEN_MODE)) {
             throw RuntimeException("Param screen mode is absent")
@@ -136,14 +64,6 @@ class ShopItemActivity : AppCompatActivity() {
             shopItemId = intent.getIntExtra(EXTRA_SHOP_ITEM_ID, ShopItem.UNDEFINED_ID)
         }
     }
-//
-//    private fun initViews() {
-//        textInputName = findViewById(R.id.text_input_name)
-//        textInputCount = findViewById(R.id.text_input_count)
-//        editTextName = findViewById(R.id.edit_text_name)
-//        editTextCount = findViewById(R.id.edit_text_count)
-//        buttonSave = findViewById(R.id.save_button)
-//    }
 
     companion object {
 
