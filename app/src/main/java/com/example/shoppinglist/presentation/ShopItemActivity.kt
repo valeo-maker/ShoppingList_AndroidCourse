@@ -13,7 +13,7 @@ import com.example.shoppinglist.domain.ShopItem
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
-class ShopItemActivity : AppCompatActivity() {
+class ShopItemActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedListener {
 
 //    private lateinit var viewModel: ShopItemViewModel
 //
@@ -33,7 +33,10 @@ class ShopItemActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             launchRightMode()
         }
+    }
 
+    override fun onEditingFinished() {
+        finish()
     }
 
     private fun launchRightMode() {

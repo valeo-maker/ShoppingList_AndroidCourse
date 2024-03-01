@@ -8,6 +8,7 @@
     tools:context=".presentation.ShopItemFragment">
 
     <com.google.android.material.textfield.TextInputLayout
+        app:boxStrokeColor="#FF8A80"
         android:id="@+id/text_input_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -29,6 +30,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        app:boxStrokeColor="#FF8A80"
         android:id="@+id/text_input_count"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -52,10 +54,10 @@
         android:id="@+id/save_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:backgroundTint="#FF8A80"
         android:text="@string/save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
